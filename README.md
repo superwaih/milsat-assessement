@@ -1,12 +1,12 @@
 # this repo is created for the milsat technical assessement by shittu adewale
 
-##Styling
+#Styling
 Tailwindcss --for faster build with focus on functionality while styling is taken care off by tailwindcss
 
-##Mapping Library
+#Mapping Library
 React-Leaflet -- selected because it is lightweight and has a faster loading time
 
-##Framework used
+#Framework used
 Reactjs
 
 ##State Management Package used
