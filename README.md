@@ -6,16 +6,16 @@ Tailwindcss --for faster build with focus on functionality while styling is take
 # Mapping Library
 React-Leaflet -- selected because it is lightweight and has a faster loading time
 
-# Framework used
+## Framework used
 Reactjs
 
-# State Management Package used
+## State Management Package used
   ContextAPI - this is used because this is a small application and using an external state management will have an effect on its performance
 
-# Dev. & Package Manager
+## Dev. & Package Manager
     NPM
     VsCode - Coding Editor
- # To Run this repo locally
+ ## To Run this repo locally
  
     Fork this repository
 
