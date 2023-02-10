@@ -5,3 +5,6 @@
 .leaflet-container{
   height: 100%;
 }
+.overlay{
+  z-index: 1000;
+}

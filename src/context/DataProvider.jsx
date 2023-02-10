@@ -16,6 +16,10 @@ const DataProvider = ({ children }) => {
   const [selectedPolygon, setSelectedPolygon] = useState("");
   const [assignTask, setAssignTask] = useState(false);
   const[manager, setManager] = useState([])
+  const checkPolygon = (taskid) =>{
+    return selectedPolygon === taskid
+  }
+  console.log(checkPolygon("poly001"))
 
   useEffect(() => {
     setGeojsonFiles(Tasks);
@@ -29,6 +33,7 @@ const DataProvider = ({ children }) => {
         setGeojsonFiles,
         selectedPolygon,
         assignTask,
+        checkPolygon,
         setAssignTask,
         setSelectedPolygon,
       }}

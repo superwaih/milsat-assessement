@@ -12,7 +12,7 @@ import { useDataProvider } from "../context/DataProvider";
 
 
 const MapPage = () => {
-  const { geojsonFiles, setAssignTask, setSelectedPolygon, selectedPolygon } =
+  const { geojsonFiles, setAssignTask, checkPolygon, setSelectedPolygon, selectedPolygon } =
     useDataProvider();
 
   return (
@@ -26,34 +26,42 @@ const MapPage = () => {
           <GeoJSON
             key={geojsonFile.taskid}
             data={geojsonFile.geojson}
+            // className={}
             eventHandlers={{
               click: () => {
                 setSelectedPolygon(geojsonFile.taskid);
-                console.log(geojsonFile.assign)
+                // console.log(geojsonFile.assign)
                 // console.log(geojsonFile.taskid === selectedPolygon)
-              },
-              up: (e)=>{
-                console.log(e)
               }
             }}
             pathOptions={{ color: 
-            geojsonFile.assign ? "blue" : 
-            geojsonFile.taskid === selectedPolygon ? 
+            geojsonFile.assigned_users.length > 0 ? "blue" : 
+            checkPolygon(geojsonFile.taskid) ? 
             "black" : "white", 
 
             fillColor:
-             geojsonFile.assign ? "gray" : geojsonFile.taskid === selectedPolygon ? "purple" :"red" }}
+            geojsonFile.assigned_users.length > 0 ? "gray" : 
+             checkPolygon(geojsonFile.taskid) ? 
+             "purple" :"red" }}
           
           >
             <Popup>
-              <h3>{geojsonFile.taskid}</h3>
-              <p>{}</p>
-              {/* <button
-                onClick={() => setAssignTask(true)}
-                className="py-3 w-full text-white rounded-sm px-2 bg-black"
-              >
-                Assign
-              </button> */}
+             <div className="P-4 flex flex-col space-y-3">
+             <h3 className="text-xl font-semibold">Task: {geojsonFile.taskid}</h3>
+              <div className="text-[17px]">
+              {geojsonFile.assigned_users.length > 0 ?
+              geojsonFile.assigned_users.map((user) => (
+                <div className="border-b pb-2 border-black ">
+                  <h4 className="text-xl">{user}</h4>
+                </div>
+              ))
+              : 
+              
+              "There are no users assigned this task now!" }
+              
+              </div>
+             </div>
+             
             </Popup>
           </GeoJSON>
         ))}
