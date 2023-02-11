@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
 import {
   MapContainer,
   TileLayer,
-  useMap,
   Popup,
   GeoJSON,
 } from "react-leaflet";
@@ -12,7 +10,7 @@ import { useDataProvider } from "../context/DataProvider";
 
 
 const MapPage = () => {
-  const { geojsonFiles, setAssignTask, checkPolygon, setSelectedPolygon, selectedPolygon } =
+  const { geojsonFiles, checkPolygon, setSelectedPolygon, selectedPolygon } =
     useDataProvider();
 
   return (
@@ -26,12 +24,10 @@ const MapPage = () => {
           <GeoJSON
             key={geojsonFile.taskid}
             data={geojsonFile.geojson}
-            // className={}
             eventHandlers={{
               click: () => {
                 setSelectedPolygon(geojsonFile.taskid);
-                // console.log(geojsonFile.assign)
-                // console.log(geojsonFile.taskid === selectedPolygon)
+                
               }
             }}
             pathOptions={{ color: 

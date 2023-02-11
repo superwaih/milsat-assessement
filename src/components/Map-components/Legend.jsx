@@ -13,8 +13,8 @@ const Legend = () => {
           <h1 className='font-bold'>Not Assigned</h1>
         </div>
         <div className='flex gap-5'>
-          <span className='h-6 w-6 p-4 border-blue-900 border-2 bg-gray-300 opacity-30 '></span>
-          <h1>Selected Polygon </h1>
+          <span className='h-6 w-6 p-4 border-black  border-2  '></span>
+          <h1 className='font-black'>Selected Polygon </h1>
         </div>
     </div>
   )

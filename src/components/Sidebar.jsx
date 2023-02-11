@@ -4,15 +4,14 @@ import { useDataProvider } from "../context/DataProvider";
 const Sidebar = () => {
   const {
     selectedPolygon,
-    assignTask,
+    assignTaskModal,
     geojsonFiles,
     checkPolygon,
     setSelectedPolygon,
-    manager,
+    setAssignTaskModal,
   } = useDataProvider();
   const [activateDropDown, setActivateDropDown] = useState(false);
-  console.log(manager);
-
+ 
   return (
     <div
       className="max-w-[600px] w-full flex flex-col space-y-4 
@@ -22,7 +21,6 @@ const Sidebar = () => {
       <h2 className="text-xl">You are currently logged in as a Manager</h2>
       <p>This is a demo project so you can assign tasks</p>
       {selectedPolygon && <h1>Current Task: {selectedPolygon}</h1>}
-      {assignTask && <div>Assign Task</div>}
       <h3 className="pb-3 border-b-2 border-black text-3xl">Tasks</h3>
       {geojsonFiles.map((task) => (
         <div
@@ -41,8 +39,8 @@ const Sidebar = () => {
             >
               See Assigned Users
             </button>
-            <button className="py-2 w-full text-white rounded-sm px-2 bg-black">
-              Assign this task
+            <button onClick={() => setAssignTaskModal(!assignTaskModal)} className="py-2 w-full text-white rounded-sm px-2 bg-black">
+               Assign this task
             </button>
           </div>
 

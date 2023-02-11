@@ -4,22 +4,16 @@ export const Managers = [
         manager_id: "ma001",
         name: "Adewale",
         role: "Manager",
-        users_Assigned: [
-            {
-                name: "user1",
-                assigned_tasks: ["poly001", "poly005"]
-            },
-            {
-                name: "user2",
-                assigned_tasks: ["polygonTwo", "polygonetwo"]
-            },            {
-                name: "user3",
-                assigned_tasks: ["polygonTwo", "polygonetwo"]
-            },            {
-                name: "user4",
-                assigned_tasks: ["polygonTwo", "polygonetwo"]
-            },
-        ]
+        my_collectors:[{
+          user001: ["poly001"],
+          user002: [],
+          user003: ["poly001"],
+          user004: [],
+          user005: [],
+          user006: [],
+    }]
+       
+
     },
   
 
@@ -29,7 +23,7 @@ export const Tasks = [
     {
         taskid: "poly001",
         assign: true,
-        assigned_users: ["user1", "user3"],
+        assigned_users: ["user001", "user003"],
         geojson: {
             "type": "FeatureCollection",
             "features": [

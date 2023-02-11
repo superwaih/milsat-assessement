@@ -3,8 +3,11 @@ import { Button } from "./components/Map-components/Button";
 import Legend from "./components/Map-components/Legend";
 import MapPage from "./components/MapPage";
 import Sidebar from "./components/Sidebar";
+import AssignTaskModal from "./components/sidebar-components/AssignTasks";
+import { useDataProvider } from "./context/DataProvider";
 
 export default function App() {
+const{assignTaskModal} = useDataProvider()
   
   return (
 
@@ -15,8 +18,10 @@ export default function App() {
     <MapPage  />
     </div>
     <Legend />
-    <Button />
    
+
+    {assignTaskModal && (<AssignTaskModal />)}
+    
    </div>
   );
 }
