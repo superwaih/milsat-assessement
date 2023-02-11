@@ -61,10 +61,7 @@ const MapPage = () => {
             </Popup>
           </GeoJSON>
         ))}
-        <button
-        className="py-3 w-full text-white rounded-sm px-2 bg-black"
-        
-        >Assign selected task</button>
+       
       </MapContainer>
     </div>
   );

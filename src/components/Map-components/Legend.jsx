@@ -14,7 +14,7 @@ const Legend = () => {
         </div>
         <div className='flex gap-5'>
           <span className='h-6 w-6 p-4 border-black  border-2  '></span>
-          <h1 className='font-black'>Selected Polygon </h1>
+          <h1 className='font-bold'>Selected Polygon </h1>
         </div>
     </div>
   )

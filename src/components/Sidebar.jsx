@@ -9,6 +9,7 @@ const Sidebar = () => {
     checkPolygon,
     setSelectedPolygon,
     setAssignTaskModal,
+    
   } = useDataProvider();
   const [activateDropDown, setActivateDropDown] = useState(false);
  
@@ -17,10 +18,13 @@ const Sidebar = () => {
       className="max-w-[600px] w-full flex flex-col space-y-4 
       border-black h-full border-r-2 p-8"
     >
-      {/* <h1>Hello <span className="text-orange-500 text-2xl">{manager[0].name}</span>,</h1> */}
-      <h2 className="text-xl">You are currently logged in as a Manager</h2>
-      <p>This is a demo project so you can assign tasks</p>
-      {selectedPolygon && <h1>Current Task: {selectedPolygon}</h1>}
+      <div>
+        <h3 className="font-bold">Simple Guide for Managers </h3>
+        <p className="italic">This is a demo project where you can assign tasks and see tasks you assigned
+      There are six available field collectors and six available tasks and each collector can only be assigned to the same task once and can also be assigned to all the tasks
+      </p>
+      </div>
+      {selectedPolygon && <h1 className="font-bold text-xl">Current Task: {selectedPolygon}</h1>}
       <h3 className="pb-3 border-b-2 border-black text-3xl">Tasks</h3>
       {geojsonFiles.map((task) => (
         <div
@@ -43,7 +47,8 @@ const Sidebar = () => {
                Assign this task
             </button>
           </div>
-
+          
+          {/* Shows the list of collectors assigned to a task */}
           {activateDropDown && checkPolygon(task.taskid) && (
             <div>
                 {task.assigned_users.length > 0 ?
