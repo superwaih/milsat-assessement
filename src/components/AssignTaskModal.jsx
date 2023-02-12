@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDataProvider } from "../../context/DataProvider";
+import { useDataProvider } from "../context/DataProvider";
 
-const users = [
+const fieldColletors = [
   "user001",
   "user002",
   "user003",
@@ -14,6 +14,7 @@ const AssignTaskModal = () => {
     useDataProvider();
 
   const [showTaskAssigned, setTaskAssigned] = useState(false);
+
   const currentpolygon = geojsonFiles.filter(
     (d) => d.taskid === selectedPolygon
   );
@@ -21,10 +22,11 @@ const AssignTaskModal = () => {
 
   // this function checks if a user has been assigned to this rask and won't return the user if he has been assigned the task
   // Because a user can only be allocated a task once
-  const availableUsers = users.filter(
+  const availableFieldCollectors = fieldColletors.filter(
     (user) => !currentpolygon[0].assigned_users.includes(user)
   );
 
+  // checks that the selected user isn't already assigned the task and if not assigns the task to the user 
   const HandleAssignTask = () => {
     if (selectedUser) {
       const currentTask = currentpolygon[0].assigned_users;
@@ -59,7 +61,7 @@ const AssignTaskModal = () => {
               X
             </button>
           </div>
-          {availableUsers.length > 0
+          {availableFieldCollectors.length > 0
            ? 
             <>
             <label htmlFor="select_user">
@@ -72,10 +74,10 @@ const AssignTaskModal = () => {
             name="select_user"
             id=""
           >
-            <option value="">Select a user</option>t
-            {availableUsers.map((user) => (
-              <option key={user} value={user}>
-                {user}
+            <option value="">Select a field collector</option>t
+            {availableFieldCollectors.map((collector) => (
+              <option key={collector} value={collector}>
+                {collector}
               </option>
             ))}
           </select>

@@ -11,7 +11,11 @@ Reactjs
 
 ## State Management Package used
   ContextAPI - this is used because this is a small application and using an external state management will have an effect on its performance
-
+## things left to do
+  make the page responsive
+  fix all styling errors
+  extract parts that can stand as a component 
+  testing
 ## Dev. & Package Manager
     NPM
     VsCode - Coding Editor

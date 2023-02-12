@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { Button } from "./components/Map-components/Button";
 import Legend from "./components/Map-components/Legend";
 import MapPage from "./components/MapPage";
 import Sidebar from "./components/Sidebar";
-import AssignTaskModal from "./components/sidebar-components/AssignTasks";
+import AssignTaskModal from "./components/AssignTaskModal";
 import { useDataProvider } from "./context/DataProvider";
 
 export default function App() {
