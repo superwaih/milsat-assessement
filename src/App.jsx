@@ -4,6 +4,7 @@ import MapPage from "./components/MapPage";
 import Sidebar from "./components/Sidebar";
 import AssignTaskModal from "./components/AssignTaskModal";
 import { useDataProvider } from "./context/DataProvider";
+import ChangeBaseMap from "./components/Map-components/ChangeBaseMap";
 
 export default function App() {
 const{assignTaskModal} = useDataProvider()
@@ -17,7 +18,7 @@ const{assignTaskModal} = useDataProvider()
     <MapPage  />
     </div>
     <Legend />
-   
+    <ChangeBaseMap />
 
     {assignTaskModal && (<AssignTaskModal />)}
     

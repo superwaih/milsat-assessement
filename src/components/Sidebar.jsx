@@ -53,9 +53,12 @@ const Sidebar = () => {
             <div>
                 {task.assigned_users.length > 0 ?
               task.assigned_users.map((user) => (
-                <div className="border-b pb-2 border-black ">
+                <div className="border-b p-3 flex justify-between pb-2 border-black ">
                   <h4 className="text-xl">{user}</h4>
+
+                  <button className="p-2 rounded hover:bg-blue-300 bg-red-500 text-white">remove user</button>
                 </div>
+                
               ))
               : <div className="py-4">There are no users assigned to this task now!</div> }
               
