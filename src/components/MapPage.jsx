@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -10,15 +10,16 @@ import { useDataProvider } from "../context/DataProvider";
 
 
 const MapPage = () => {
-  const { geojsonFiles, checkPolygon, setSelectedPolygon, selectedPolygon } =
+  const { geojsonFiles, checkPolygon, baseMap, setSelectedPolygon, selectedPolygon } =
     useDataProvider();
+  
 
   return (
     <div className="w-full h-full">
       <MapContainer center={[9.07481143758369, 7.493501807312384]} zoom={13}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png"
+          url={baseMap}
         />
         {geojsonFiles.map((geojsonFile) => (
           <GeoJSON

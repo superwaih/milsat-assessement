@@ -11,6 +11,9 @@ const DataProvider = ({ children }) => {
   const [assignTaskModal, setAssignTaskModal] = useState(false);
   const [activateDropDown, setActivateDropDown] = useState(false);
   const [manager, setManager] = useState([]);
+  // const [showPopup, setShowPopup] = useState(false);
+  const [mapType, setMapType] = useState('vector');
+  const [baseMap, setBaseMap] = useState('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
   const currentpolygon = geojsonFiles.filter(
     (d) => d.taskid === selectedPolygon
   );
@@ -44,6 +47,10 @@ const DataProvider = ({ children }) => {
     <DataContext.Provider
       value={{
         geojsonFiles,
+        mapType,
+        setMapType,
+        baseMap,
+        setBaseMap,
         manager,
         handleRemoveUser,
         currentpolygon,
