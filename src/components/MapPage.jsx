@@ -10,7 +10,7 @@ import { useDataProvider } from "../context/DataProvider";
 
 
 const MapPage = () => {
-  const { geojsonFiles, checkPolygon, baseMap, setSelectedPolygon, selectedPolygon } =
+  const { geojsonFiles, checkPolygon, baseMap, setSelectedPolygon } =
     useDataProvider();
   
 
