@@ -8,11 +8,12 @@ const Sidebar = () => {
     geojsonFiles,
     checkPolygon,
     setSelectedPolygon,
+    handleRemoveUser,
     setAssignTaskModal,
-    
+    activateDropDown,
+    setActivateDropDown,
   } = useDataProvider();
-  const [activateDropDown, setActivateDropDown] = useState(false);
- 
+
   return (
     <div
       className="max-w-[600px] w-full flex flex-col space-y-4 
@@ -20,14 +21,20 @@ const Sidebar = () => {
     >
       <div>
         <h3 className="font-bold">Simple Guide for Managers </h3>
-        <p className="italic">This is a demo project where you can assign tasks and see tasks you assigned
-      There are six available field collectors and six available tasks and each collector can only be assigned to the same task once and can also be assigned to all the tasks
-      </p>
+        <p className="italic">
+          This is a demo project where you can assign tasks and see tasks you
+          assigned There are six available field collectors and six available
+          tasks and each collector can only be assigned to the same task once
+          and can also be assigned to all the tasks
+        </p>
       </div>
-      {selectedPolygon && <h1 className="font-bold text-xl">Current Task: {selectedPolygon}</h1>}
+      {selectedPolygon && (
+        <h1 className="font-bold text-xl">Current Task: {selectedPolygon}</h1>
+      )}
       <h3 className="pb-3 border-b-2 border-black text-3xl">Tasks</h3>
       {geojsonFiles.map((task) => (
         <div
+          key={task.taskid}
           onClick={() => setSelectedPolygon(task.taskid)}
           className={
             checkPolygon(task.taskid)
@@ -43,25 +50,38 @@ const Sidebar = () => {
             >
               See Assigned Users
             </button>
-            <button onClick={() => setAssignTaskModal(!assignTaskModal)} className="py-2 w-full text-white rounded-sm px-2 bg-black">
-               Assign this task
+            <button
+              onClick={() => setAssignTaskModal(!assignTaskModal)}
+              className="py-2 w-full text-white rounded-sm px-2 bg-black"
+            >
+              Assign this task
             </button>
           </div>
-          
+
           {/* Shows the list of collectors assigned to a task */}
           {activateDropDown && checkPolygon(task.taskid) && (
             <div>
-                {task.assigned_users.length > 0 ?
-              task.assigned_users.map((user) => (
-                <div className="border-b p-3 flex justify-between pb-2 border-black ">
-                  <h4 className="text-xl">{user}</h4>
+              {task.assigned_users.length > 0 ? (
+                task.assigned_users.map((user, index) => (
+                  <div
+                    key={user}
+                    className="border-b p-3 flex justify-between pb-2 border-black "
+                  >
+                    <h4 className="text-xl">{user}</h4>
 
-                  <button className="p-2 rounded hover:bg-blue-300 bg-red-500 text-white">remove user</button>
+                    <button
+                      onClick={() => handleRemoveUser(task.taskid, index)}
+                      className="p-2 rounded hover:bg-blue-300 bg-red-500 text-white"
+                    >
+                      remove user
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <div className="py-4">
+                  There are no users assigned to this task now!
                 </div>
-                
-              ))
-              : <div className="py-4">There are no users assigned to this task now!</div> }
-              
+              )}
             </div>
           )}
         </div>

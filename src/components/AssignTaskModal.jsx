@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDataProvider } from "../context/DataProvider";
 
-const fieldColletors = [
+const fieldCollectors = [
   "user001",
   "user002",
   "user003",
@@ -10,19 +10,17 @@ const fieldColletors = [
   "user006",
 ];
 const AssignTaskModal = () => {
-  const { selectedPolygon, geojsonFiles, manager, setAssignTaskModal } =
+  const { selectedPolygon, geojsonFiles, currentpolygon, manager, setAssignTaskModal } =
     useDataProvider();
 
   const [showTaskAssigned, setTaskAssigned] = useState(false);
 
-  const currentpolygon = geojsonFiles.filter(
-    (d) => d.taskid === selectedPolygon
-  );
+  
   const [selectedUser, setSelectedUser] = useState("");
 
   // this function checks if a user has been assigned to this rask and won't return the user if he has been assigned the task
   // Because a user can only be allocated a task once
-  const availableFieldCollectors = fieldColletors.filter(
+  const availableFieldCollectors = fieldCollectors.filter(
     (user) => !currentpolygon[0].assigned_users.includes(user)
   );
 
@@ -30,12 +28,9 @@ const AssignTaskModal = () => {
   const HandleAssignTask = () => {
     if (selectedUser) {
       const currentTask = currentpolygon[0].assigned_users;
-      const currentUserTasks = manager[0].my_collectors[0][selectedUser];
-      if (!currentUserTasks.includes(selectedPolygon)) {
-        currentUserTasks.push(selectedPolygon);
         currentTask.push(selectedUser);
         setTaskAssigned(true);
-      }
+     
     }
   };
   const handleCloseAssignModal = () => {

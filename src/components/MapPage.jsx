@@ -47,7 +47,7 @@ const MapPage = () => {
               <div className="text-[17px]">
               {geojsonFile.assigned_users.length > 0 ?
               geojsonFile.assigned_users.map((user) => (
-                <div className="border-b pb-2 border-black ">
+                <div key={user} className="border-b pb-2 border-black ">
                   <h4 className="text-xl">{user}</h4>
                 </div>
               ))
