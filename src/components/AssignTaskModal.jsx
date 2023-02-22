@@ -51,7 +51,7 @@ const AssignTaskModal = () => {
             </h3>
             <button
               onClick={handleCloseAssignModal}
-              className="p-3 rounded-full bg-blue-500 border-red-500  text-white"
+              className="p-3 rounded-[50%] bg-blue-500 border-red-500  text-white"
             >
               X
             </button>
