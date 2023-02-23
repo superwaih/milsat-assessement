@@ -62,14 +62,14 @@ const MapPage = () => {
             </Popup>
           </GeoJSON>
         ))}
-      {esriData.length > 0 ? 
-    esriData.map(() => (
+      {/* {esriData?.length > 0 ? 
+    esriData?.map(() => (
         <GeoJSON
-        
+
         >
         </GeoJSON >
     ))  : null
-    }
+    } */}
 
 
        

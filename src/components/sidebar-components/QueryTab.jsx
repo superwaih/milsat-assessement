@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-// import { ReactNaijaStateLgaSelect } from 'react-select-nigeria-states-lga'
+import { ReactNaijaStateLgaSelect } from 'react-select-nigeria-states-lga'
 import { useDataProvider } from '../../context/DataProvider';
 
 
@@ -9,19 +9,19 @@ const QueryTab = () => {
     const [workFrameType, setWorkFrameType] = useState("");
     const [naijaState, setNaijaState] = useState('');
     const[loading, setLoading] = useState(false)
-    // const [naijaLga, setNaijaLga] = useState('');
-    // const[selectedState, setSelectedState] = useState("")
-    // const[selectedLga, setSelectedLga] = useState("")
-    // const [towns, setLga] = useState([]);
-    // console.log(naijaLga,naijaState)
+    const [naijaLga, setNaijaLga] = useState('');
+    const[selectedState, setSelectedState] = useState("")
+    const[selectedLga, setSelectedLga] = useState("")
+    const [towns, setLga] = useState([]);
+    console.log(naijaLga,naijaState)
   
     const handleFilter = async (event) => {
       event.preventDefault();
       setLoading(true)
       try {
-        // const {data} = await axios.get(
-        //   `https://services3.arcgis.com/od20s3ViWJZ68qsq/ArcGIS/rest/services/Nigeria_Grids/FeatureServer/0/query?where=STATE_NAME%3D%27${naijaState}%27`)
-        // setEsriData(data)
+        const {data} = await axios.get(
+          `https://services3.arcgis.com/od20s3ViWJZ68qsq/ArcGIS/rest/services/Nigeria_Grids/FeatureServer/0/query?where=STATE_NAME%3D%27${naijaState}%27`)
+        setEsriData(data)
         setLoading(false)
         
       } catch (error) {
@@ -46,7 +46,7 @@ const QueryTab = () => {
       </select>
     </div>
   <div className='flex flex-col'>
-  {/* <ReactNaijaStateLgaSelect 
+  <ReactNaijaStateLgaSelect 
             naijaState={naijaState}
             naijaLga={naijaLga}
             towns={towns}
@@ -57,7 +57,7 @@ const QueryTab = () => {
             stateClassName="style-select"
             lgaClassName="style-select"
             setLga={setLga}
-         /> */}
+         />
   </div>
     <button disabled={loading} className='bg-blue-500 p-3 disabled:opacity-40 text-white font-semibold rounded-md w-full' type="submit">
       {loading ? "Loading..." : "Filter"}
