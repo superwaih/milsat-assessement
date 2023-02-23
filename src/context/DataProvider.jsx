@@ -11,6 +11,7 @@ const DataProvider = ({ children }) => {
   const [assignTaskModal, setAssignTaskModal] = useState(false);
   const [activateDropDown, setActivateDropDown] = useState(false);
   const [manager, setManager] = useState([]);
+  const[esriData, setEsriData] = useState([])
   const [mapType, setMapType] = useState('satellite');
   const [baseMap, setBaseMap] = useState('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
   const currentpolygon = geojsonFiles.filter(
@@ -50,6 +51,8 @@ const DataProvider = ({ children }) => {
         setMapType,
         baseMap,
         setBaseMap,
+        esriData,
+        setEsriData,
         manager,
         handleRemoveUser,
         currentpolygon,

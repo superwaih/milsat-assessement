@@ -10,13 +10,13 @@ import { useDataProvider } from "../context/DataProvider";
 
 
 const MapPage = () => {
-  const { geojsonFiles, checkPolygon, baseMap, setSelectedPolygon } =
+  const { geojsonFiles, checkPolygon, baseMap, esriData, setSelectedPolygon } =
     useDataProvider();
   
 
   return (
     <div className="w-full h-full">
-      <MapContainer center={[9.07481143758369, 7.493501807312384]} zoom={13}>
+      <MapContainer center={[9.07481143758369, 7.493501807312384]} zoom={12}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={baseMap}
@@ -62,6 +62,16 @@ const MapPage = () => {
             </Popup>
           </GeoJSON>
         ))}
+      {esriData.length > 0 ? 
+    esriData.map(() => (
+        <GeoJSON
+        
+        >
+        </GeoJSON >
+    ))  : null
+    }
+
+
        
       </MapContainer>
     </div>

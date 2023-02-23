@@ -30,9 +30,9 @@ const Sidebar = () => {
     {selectedPolygon && (
       <h1 className="font-bold text-xl">Current Task: {selectedPolygon}</h1>
     )}
-     <div className="border-black pt-3  flex gap-4 border-b">
-      <button onClick={() => changeActiveTab("task")} className={activeTab === "task" ? "text-2xl border-b-4 border-gray-400  uppercase font-semibold" : "text-2xl rounded-md uppercase"}>Tasks</button>
-      <button onClick={() => changeActiveTab("query")} className={activeTab === "query" ? "text-2xl border-b-4 border-slate-400 uppercase font-semibold" : "text-2xl rounded-md uppercase"}>Query</button>
+     <div className="border-gray-300 pt-3  flex gap-4 border-b">
+      <button onClick={() => changeActiveTab("task")} className={activeTab === "task" ? "text-xl border-b-2 border-gray-400  uppercase font-semibold" : "text-xl rounded-md uppercase"}>Tasks</button>
+      <button onClick={() => changeActiveTab("query")} className={activeTab === "query" ? "text-xl border-b-2 border-slate-400 uppercase font-semibold" : "text-xl rounded-md uppercase"}>Query</button>
      </div>
      </div>
      <div className="flex w-full gap-4">
