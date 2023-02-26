@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -7,12 +7,22 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useDataProvider } from "../context/DataProvider";
-
-
+import { FeatureLayer } from "react-esri-leaflet";
+const featureLayerURL= "https://services3.arcgis.com/od20s3ViWJZ68qsq/ArcGIS/rest/services/Nigeria_Grids/FeatureServer/0"
+const STATE = 'Lagos'
 const MapPage = () => {
-  const { geojsonFiles, checkPolygon, baseMap, esriData, setSelectedPolygon } =
-    useDataProvider();
-  
+  const { geojsonFiles, checkPolygon, showGrid, baseMap, naijaState, naijaLga, setLoading,  setSelectedPolygon } =useDataProvider();
+  const featureLayerRef = useRef();
+
+  // const queryFeature = () => {
+  //   featureLayerRef.current
+  //     .query()
+  //     .within(latlngbounds)
+  //     .where("Direction = 'WEST'")
+  //     .run(function (error, featureCollection) {
+  //       console.log(featureCollection);
+  //     });
+  // };
 
   return (
     <div className="w-full h-full">
@@ -62,14 +72,16 @@ const MapPage = () => {
             </Popup>
           </GeoJSON>
         ))}
-      {/* {esriData?.length > 0 ? 
-    esriData?.map(() => (
-        <GeoJSON
-
-        >
-        </GeoJSON >
-    ))  : null
-    } */}
+       {showGrid && (
+        <FeatureLayer url={featureLayerURL}
+        // ref={featureLayerRef}
+       where={naijaLga != "" ? `STATE_NAME = '${naijaState}' AND LGA_NAME = '${naijaLga}' `  : `STATE_NAME = '${naijaState}'` }
+      eventHandlers={{
+        loading: () => setLoading(true),
+        load: () => setLoading(false),
+        // click: console.log("clicked")
+      }}/>
+       )}
 
 
        
