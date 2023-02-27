@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Managers, Tasks } from "../utils/data";
 
 const DataContext = createContext();
@@ -28,6 +28,7 @@ const DataProvider = ({ children }) => {
   const currentpolygon = geojsonFiles.filter(
     (d) => d.taskid === selectedPolygon
   );
+
 
   const checkPolygon = (taskid) => {
     return selectedPolygon === taskid;
