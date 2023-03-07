@@ -9,14 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@esri/arcgis-rest-request": "^4.1.2",
+    "@turf/turf": "^6.5.0",
     "axios": "^1.3.3",
     "esri-leaflet": "^3.0.10",
     "leaflet": "^1.9.3",
+    "mapbox-gl": "^2.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-esri-leaflet": "^2.0.1",
     "react-leaflet": "^4.2.0",
-    "react-select-nigeria-states-lga": "^1.0.2"
+    "react-map-gl": "^7.0.21",
+    "react-select-nigeria-states-lga": "^1.0.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

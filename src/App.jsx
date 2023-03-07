@@ -5,9 +5,13 @@ import Sidebar from "./components/Sidebar";
 import AssignTaskModal from "./components/AssignTaskModal";
 import { useDataProvider } from "./context/DataProvider";
 import ChangeBaseMap from "./components/Map-components/ChangeBaseMap";
+import MapBoxMapPage from "./components/Map-components/LeafletGeojson";
+
+
 
 export default function App() {
-const{assignTaskModal} = useDataProvider()
+const{assignTaskModal, selectedLgaForm, selectedStateForm} = useDataProvider()
+
   
   return (
 
@@ -16,6 +20,7 @@ const{assignTaskModal} = useDataProvider()
     <div className="w-full flex h-[95vh] justify-between">
     <Sidebar  />
     <MapPage  />
+    {/* <MapBoxMapPage gridData={allData} /> */}
     </div>
     <Legend />
     <ChangeBaseMap />

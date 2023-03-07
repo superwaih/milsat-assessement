@@ -1,47 +1,52 @@
 import React, { useEffect, useState, useRef } from "react";
 import L from "leaflet";
-import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
+import { MapContainer, TileLayer, Popup, GeoJSON, Polygon} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useDataProvider } from "../context/DataProvider";
-import { FeatureLayer } from "react-esri-leaflet";
+import axios from "axios";
 
+import ChangeZoomLevel from "./Map-components/ChangeZoomLevel";
 // ESRI API URL
 const featureLayerURL =
   "https://services3.arcgis.com/od20s3ViWJZ68qsq/ArcGIS/rest/services/Nigeria_Grids/FeatureServer/0";
 
 const MapPage = () => {
+ 
   const {
     geojsonFiles,
     checkPolygon,
-    showGrid,
+    firstcords,
+    gridFrame,
     baseMap,
-    naijaState,
-    naijaLga,
-    setLoading,
+    
+    selectedPolygon,
     setSelectedPolygon,
   } = useDataProvider();
-  const featureLayerRef = useRef();
+  
   const mapRef = useRef(null);
+  const [dataId, setDataId] = useState()
 
+  
+
+  
   return (
     <div className="w-full h-full">
       <MapContainer
-        whenCreated={(map) => {
-          mapRef.current = map;
-        }}
+        ref={mapRef}
         center={[9.07481143758369, 7.493501807312384]}
-        zoom={12}
+        zoom={7}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={baseMap}
         />
-        {geojsonFiles.map((geojsonFile) => (
+        {/* {geojsonFiles.map((geojsonFile) => (
           <GeoJSON
             key={geojsonFile.taskid}
             data={geojsonFile.geojson}
             eventHandlers={{
-              click: () => {
+              click: (e) => {
+                onClick(e),
                 setSelectedPolygon(geojsonFile.taskid);
               },
             }}
@@ -78,27 +83,52 @@ const MapPage = () => {
               </div>
             </Popup>
           </GeoJSON>
-        ))}
-        {/* Container for showing grid data */}
-        {showGrid && (
-          <FeatureLayer
-            url={featureLayerURL}
-            ref={featureLayerRef}
-            where={
-              naijaLga != ""
-                ? `STATE_NAME = '${naijaState}' AND LGA_NAME = '${naijaLga}' `
-                : `STATE_NAME = '${naijaState}'`
-            }
-            eventHandlers={{
-              loading: () => setLoading(true),
-              click: (e) => {},
-              load: () => {
-                setLoading(false);
-                console.log("featurelayer loaded");
+        ))} */}
+        {gridFrame?.map((geojsonFile, index) => {
+          const { geometry, properties, type } = geojsonFile;
+          const data = {
+            type: "FeatureCollection",
+            features: [
+              {
+                geometry: { ...geometry },
+                properties: { ...properties },
+                type: "Feature",
               },
-            }}
-          />
-        )}
+            ],
+          };
+          return (
+            <GeoJSON
+              key={index}
+              data={data}
+              eventHandlers={{
+                click: (e) => {
+                  console.log(e.layer.feature.properties.FID);
+                  setSelectedPolygon(e.layer.feature.properties.FID);
+                  setDataId(index);
+                },
+              }}
+              pathOptions={{
+                color: dataId === index ? "black" : "blue",
+
+                fillColor: dataId === index ? "gray" : "purple",
+              }}
+              // pathOptions={{
+              //   color: "blue",
+              //   fillColor: "red"
+              // }}
+            >
+              <Popup>
+                <div className="P-4 flex flex-col space-y-3">
+                  <h3 className="text-xl font-semibold">
+                    FID: {selectedPolygon}
+                  </h3>
+                  <div className="text-[17px]"></div>
+                </div>
+              </Popup>
+            </GeoJSON>
+          );
+        })}
+        <ChangeZoomLevel firstcords={firstcords} />
       </MapContainer>
     </div>
   );

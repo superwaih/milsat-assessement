@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { Managers, Tasks } from "../utils/data";
+import { Allusers, Managers, Tasks } from "../utils/data";
 
 const DataContext = createContext();
 
@@ -17,10 +17,19 @@ const DataProvider = ({ children }) => {
   const [manager, setManager] = useState([]);
   // boolean for showing the filtered data on the map
   const[showGrid, setShowGrid] = useState(false)
+
+  // User input states
+  const [workFrameType, setWorkFrameType] = useState("");
+  const [selectedStateCode, setSelectedStateCode] = useState(null);
+  const [selectedLGACode, setSelectedLGACode] = useState(null);
  
   const [mapType, setMapType] = useState('satellite');
-  const [naijaState, setNaijaState] = useState('');
-  const [naijaLga, setNaijaLga] = useState('');
+
+  // 
+  const[Users, setUsers] = useState([]) 
+  // 
+  const[gridFrame, setGridFrame] = useState(null)
+
   // Grid loading state
   const[loading, setLoading] = useState(false)
 
@@ -28,6 +37,7 @@ const DataProvider = ({ children }) => {
   const currentpolygon = geojsonFiles.filter(
     (d) => d.taskid === selectedPolygon
   );
+  const[firstcords, setFirstCords] = useState([])
 
 
   const checkPolygon = (taskid) => {
@@ -36,7 +46,7 @@ const DataProvider = ({ children }) => {
 
   useEffect(() => {
     setGeojsonFiles(Tasks);
-    setManager(Managers);
+    setUsers(Allusers)
   }, []);
 
   // Function for removing a field collector from the list of assigned users to a task 
@@ -62,10 +72,9 @@ const DataProvider = ({ children }) => {
         mapType,
         setLoading,
         loading,
-        naijaLga,
-        setNaijaLga,
-        naijaState,
-        setNaijaState,
+        Users,
+        gridFrame, 
+        setGridFrame,
         setMapType,
         baseMap,
         showGrid,
@@ -79,6 +88,14 @@ const DataProvider = ({ children }) => {
         activateDropDown,
         setActivateDropDown,
         assignTaskModal,
+        workFrameType, 
+        setWorkFrameType, 
+        selectedStateCode, 
+        setSelectedStateCode, 
+        selectedLGACode, 
+        setSelectedLGACode,
+        firstcords,
+        setFirstCords,
         checkPolygon,
         setAssignTaskModal,
         setSelectedPolygon,
