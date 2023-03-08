@@ -20,7 +20,6 @@ const{assignTaskModal, selectedLgaForm, selectedStateForm} = useDataProvider()
     <div className="w-full flex h-[95vh] justify-between">
     <Sidebar  />
     <MapPage  />
-    {/* <MapBoxMapPage gridData={allData} /> */}
     </div>
     <Legend />
     <ChangeBaseMap />

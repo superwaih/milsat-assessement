@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDataProvider } from "../context/DataProvider";
+import { useDataProvider,  } from "../context/DataProvider";
 
 const fieldCollectors = [
   "user001",
@@ -10,29 +10,35 @@ const fieldCollectors = [
   "user006",
 ];
 const AssignTaskModal = () => {
-  const { selectedPolygon, geojsonFiles, currentpolygon, manager, setAssignTaskModal } =
+  const { selectedPolygon, Users, geojsonFiles, workFrameType, selectedLGACode, selectedStateCode,  currentpolygon, manager, setAssignTaskModal } =
     useDataProvider();
+
 
   const [showTaskAssigned, setTaskAssigned] = useState(false);
 
   
-  const [selectedUser, setSelectedUser] = useState("");
+  const [selectedUser, setSelectedUser] = useState(null);
 
   // this function checks if a user has been assigned to this rask and won't return the user if he has been assigned the task
   // Because a user can only be allocated a task once
-  const availableFieldCollectors = fieldCollectors.filter(
-    (user) => !currentpolygon[0].assigned_users.includes(user)
+  const availableFieldCollectors = Users.filter(
+    (user) => !currentpolygon[0].assigned_users.includes(user.id)
   );
+
+  
 
   // checks that the selected user isn't already assigned the task and if not assigns the task to the user 
   const HandleAssignTask = () => {
     if (selectedUser) {
       const currentTask = currentpolygon[0].assigned_users;
-        currentTask.push(selectedUser);
+       
+      
+      currentTask.push(selectedUser);
         setTaskAssigned(true);
      
     }
   };
+
   const handleCloseAssignModal = () => {
     setAssignTaskModal(false);
     setTaskAssigned(false);
@@ -71,8 +77,8 @@ const AssignTaskModal = () => {
           >
             <option value="">Select a field collector</option>t
             {availableFieldCollectors.map((collector) => (
-              <option key={collector} value={collector}>
-                {collector}
+              <option key={collector.id} value={collector.id}>
+                {collector.fullname}
               </option>
             ))}
           </select>
@@ -100,7 +106,14 @@ const AssignTaskModal = () => {
           <h4 className="font-semibold text-xl">
             You just assigned task:
             <span className="">{` ${selectedPolygon}`}</span> to
-            <span className="font-bold">{` ${selectedUser}`}</span>
+            <span className="font-bold">User{` ${selectedUser}`}</span>
+
+            <div>
+              <h3>State Code: {selectedStateCode}</h3>
+              <h3>LGA Code: {selectedLGACode}</h3>
+              <h3>Work Frame Type: {workFrameType}</h3>
+              
+            </div>
           </h4>
 
           <button

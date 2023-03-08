@@ -34,8 +34,8 @@ const DataProvider = ({ children }) => {
   const[loading, setLoading] = useState(false)
 
   const [baseMap, setBaseMap] = useState('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-  const currentpolygon = geojsonFiles.filter(
-    (d) => d.taskid === selectedPolygon
+  const currentpolygon = gridFrame?.filter(
+    (d) => d.properties.FID === selectedPolygon
   );
   const[firstcords, setFirstCords] = useState([])
 
@@ -51,9 +51,9 @@ const DataProvider = ({ children }) => {
 
   // Function for removing a field collector from the list of assigned users to a task 
   const handleRemoveUser = (itemId, subItemIndex) => {
-    setGeojsonFiles(
-      geojsonFiles.map((item) => {
-        if (item.taskid === itemId) {
+    setGridFrame(
+      gridFrame?.map((item) => {
+        if (item.properties.FID === itemId) {
           return {
             ...item,
             assigned_users: item.assigned_users.filter(

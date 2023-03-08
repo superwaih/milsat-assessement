@@ -18,16 +18,13 @@ const MapPage = () => {
     firstcords,
     gridFrame,
     baseMap,
-    
     selectedPolygon,
     setSelectedPolygon,
+    
   } = useDataProvider();
   
   const mapRef = useRef(null);
   const [dataId, setDataId] = useState()
-
-  
-
   
   return (
     <div className="w-full h-full">
@@ -40,50 +37,7 @@ const MapPage = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={baseMap}
         />
-        {/* {geojsonFiles.map((geojsonFile) => (
-          <GeoJSON
-            key={geojsonFile.taskid}
-            data={geojsonFile.geojson}
-            eventHandlers={{
-              click: (e) => {
-                onClick(e),
-                setSelectedPolygon(geojsonFile.taskid);
-              },
-            }}
-            pathOptions={{
-              color:
-                geojsonFile.assigned_users.length > 0
-                  ? "blue"
-                  : checkPolygon(geojsonFile.taskid)
-                  ? "black"
-                  : "white",
-
-              fillColor:
-                geojsonFile.assigned_users.length > 0
-                  ? "gray"
-                  : checkPolygon(geojsonFile.taskid)
-                  ? "purple"
-                  : "red",
-            }}
-          >
-            <Popup>
-              <div className="P-4 flex flex-col space-y-3">
-                <h3 className="text-xl font-semibold">
-                  Task: {geojsonFile.taskid}
-                </h3>
-                <div className="text-[17px]">
-                  {geojsonFile.assigned_users.length > 0
-                    ? geojsonFile.assigned_users.map((user) => (
-                        <div key={user} className="border-b pb-2 border-black ">
-                          <h4 className="text-xl">{user}</h4>
-                        </div>
-                      ))
-                    : "There are no users assigned this task now!"}
-                </div>
-              </div>
-            </Popup>
-          </GeoJSON>
-        ))} */}
+       
         {gridFrame?.map((geojsonFile, index) => {
           const { geometry, properties, type } = geojsonFile;
           const data = {
@@ -102,20 +56,28 @@ const MapPage = () => {
               data={data}
               eventHandlers={{
                 click: (e) => {
-                  console.log(e.layer.feature.properties.FID);
                   setSelectedPolygon(e.layer.feature.properties.FID);
                   setDataId(index);
                 },
               }}
+             
               pathOptions={{
-                color: dataId === index ? "black" : "blue",
-
-                fillColor: dataId === index ? "gray" : "purple",
+                color:
+                  geojsonFile.assigned_users.length > 0
+                    ? "blue"
+                    : checkPolygon(geojsonFile?.id)
+                    ? "black"
+                    : "white",
+  
+                fillColor:
+                  geojsonFile.assigned_users.length > 0
+                    ? "gray"
+                    : checkPolygon(geojsonFile?.id)
+                    ? "purple"
+                    : "red",
               }}
-              // pathOptions={{
-              //   color: "blue",
-              //   fillColor: "red"
-              // }}
+
+      
             >
               <Popup>
                 <div className="P-4 flex flex-col space-y-3">

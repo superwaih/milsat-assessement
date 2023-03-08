@@ -20,23 +20,23 @@ const Sidebar = () => {
      <div>
      <div>
       <h3 className="font-bold">Simple Guide for Managers </h3>
-      <p className="italic">
+      {/* <p className="italic">
         This is a demo project where you can assign tasks and see tasks you
         assigned There are six available field collectors and six available
         tasks and each collector can only be assigned to the same task once
         and can also be assigned to all the tasks
-      </p>
+      </p> */}
     </div>
     {selectedPolygon && (
       <h1 className="font-bold text-xl">Current Task: {selectedPolygon}</h1>
     )}
      <div className="border-gray-300 pt-3  flex gap-4 border-b">
-      <button onClick={() => changeActiveTab("task")} className={activeTab === "task" ? "text-xl border-b-2 border-gray-400  uppercase font-semibold" : "text-xl rounded-md uppercase"}>Tasks</button>
-      <button onClick={() => changeActiveTab("query")} className={activeTab === "query" ? "text-xl border-b-2 border-slate-400 uppercase font-semibold" : "text-xl rounded-md uppercase"}>Query</button>
+      <button onClick={() => changeActiveTab("task")} className={activeTab === "task" ? "text-xl border-b-2 border-gray-400  uppercase font-semibold" : "text-xl rounded-md uppercase"}>Query</button>
+      <button onClick={() => changeActiveTab("query")} className={activeTab === "query" ? "text-xl border-b-2 border-slate-400 uppercase font-semibold" : "text-xl rounded-md uppercase"}>Tasks</button>
      </div>
      </div>
      <div className="flex w-full gap-4">
-      {activeTab === "task" ? <TasksTab  /> :<QueryTab /> }
+      {activeTab === "task" ?  <QueryTab /> : <TasksTab  />}
       
  
        

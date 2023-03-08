@@ -288,7 +288,7 @@ export const Allusers = [
           "designation": "Collector",
           "approvalStatus": "Approved",
           "staffStatus": "Adhoc",
-          "workFrameTypes": "NoFrame",
+          "workFrameTypes": [],
           "stateCode": null,
           "locName": null,
           "locCode": null,

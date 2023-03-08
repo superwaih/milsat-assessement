@@ -9,7 +9,7 @@ const Legend = () => {
           <h1 className='font-bold'>Assigned</h1>
         </div>
         <div className='flex gap-5'>
-          <span className='h-6 w-6 p-4 border-white border-2 bg-red-400 '></span>
+          <span className='h-6 w-6 p-4 border-white border-2 bg-red-400/40 '></span>
           <h1 className='font-bold'>Not Assigned</h1>
         </div>
         <div className='flex gap-5'>

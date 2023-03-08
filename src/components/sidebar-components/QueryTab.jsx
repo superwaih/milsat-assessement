@@ -63,7 +63,13 @@ const QueryTab = () => {
       try {
         const URL = `${url}?where=STATE_CODE=${selectedStateCode}+AND+LGA_CODE=${selectedLGACode}&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=LGA_NAME,STATE_NAME,FID,LGA_CODE&returnGeometry=true&returnCentroid=True&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token=`;
         const { data } = await axios.get(URL);
-        setGridFrame(data.features);
+        const formatData = data.features.map((d) => {
+          return {
+            ...d, assigned_users: []
+          }
+        })
+        setGridFrame(formatData);
+        console.log(formatData)
         setFirstCords(data.features[0].geometry.coordinates[0][0]);
         setLoading(false);
         setShowGrid(true);
