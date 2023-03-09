@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDataProvider,  } from "../context/DataProvider";
 
-const fieldCollectors = [
-  "user001",
-  "user002",
-  "user003",
-  "user004",
-  "user005",
-  "user006",
-];
 const AssignTaskModal = () => {
-  const { selectedPolygon, Users, geojsonFiles, workFrameType, selectedLGACode, selectedStateCode,  currentpolygon, manager, setAssignTaskModal } =
+  const { selectedPolygon, Users, workFrameType, selectedLGACode, selectedStateCode,  currentpolygon, manager, setAssignTaskModal } =
     useDataProvider();
 
 

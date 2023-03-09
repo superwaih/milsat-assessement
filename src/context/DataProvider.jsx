@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { Allusers, Managers, Tasks } from "../utils/data";
+import { Allusers, Tasks } from "../utils/data";
 
 const DataContext = createContext();
 
@@ -14,9 +14,7 @@ const DataProvider = ({ children }) => {
   const [assignTaskModal, setAssignTaskModal] = useState(false);
  // boolean for show the list of assigned users to a task
   const [activateDropDown, setActivateDropDown] = useState(false);
-  const [manager, setManager] = useState([]);
   // boolean for showing the filtered data on the map
-  const[showGrid, setShowGrid] = useState(false)
 
   // User input states
   const [workFrameType, setWorkFrameType] = useState("");
@@ -77,10 +75,7 @@ const DataProvider = ({ children }) => {
         setGridFrame,
         setMapType,
         baseMap,
-        showGrid,
-        setShowGrid,
         setBaseMap,
-        manager,
         handleRemoveUser,
         currentpolygon,
         setGeojsonFiles,

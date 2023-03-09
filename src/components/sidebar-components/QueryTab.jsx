@@ -6,21 +6,20 @@ const url =
 
 const QueryTab = () => {
   const {
-    naijaLga,
-    naijaState,
-    setShowGrid,
-    gridFrame,
-    Users,
     setGridFrame,
     loading,
     setLoading,
-    setFirstCords, workFrameType, setWorkFrameType, selectedStateCode, setSelectedStateCode, selectedLGACode, setSelectedLGACode
+    setFirstCords,
+    workFrameType,
+    setWorkFrameType,
+    selectedStateCode,
+    setSelectedStateCode,
+    selectedLGACode,
+    setSelectedLGACode,
   } = useDataProvider();
   const [stateNames, setStateNames] = useState([]);
   const [lgaNames, setLgaNames] = useState([]);
   const [lgaLoading, setLgaloading] = useState(false);
-  
-
 
   const fetchStates = async () => {
     const { data } = await axios.get(
@@ -65,17 +64,15 @@ const QueryTab = () => {
         const { data } = await axios.get(URL);
         const formatData = data.features.map((d) => {
           return {
-            ...d, assigned_users: []
-          }
-        })
+            ...d,
+            assigned_users: [],
+          };
+        });
         setGridFrame(formatData);
-        console.log(formatData)
         setFirstCords(data.features[0].geometry.coordinates[0][0]);
         setLoading(false);
-        setShowGrid(true);
       } catch (error) {
         console.log(error);
-        setShowGrid(false);
       }
     }
   };
@@ -128,21 +125,20 @@ const QueryTab = () => {
             <option value="">Loading lgas...</option>
           ) : (
             <>
-            <option value="">Select Lga</option>
-            {lgaNames?.map((lga) => (
-              <option
-                key={lga.attributes.LGA_CODE}
-                value={lga.attributes.LGA_CODE}
-              >
-                {lga.attributes.LGA_NAME}
-              </option>
-            
+              <option value="">Select Lga</option>
+              {lgaNames?.map((lga) => (
+                <option
+                  key={lga.attributes.LGA_CODE}
+                  value={lga.attributes.LGA_CODE}
+                >
+                  {lga.attributes.LGA_NAME}
+                </option>
               ))}
             </>
           )}
         </select>
         <div>
-          lga:{selectedLGACode}, state:{selectedStateCode}
+          {/* lga:{selectedLGACode}, state:{selectedStateCode} */}
         </div>
       </div>
       <button
@@ -150,7 +146,7 @@ const QueryTab = () => {
         className="bg-blue-500 p-3 disabled:opacity-40 text-white font-semibold rounded-md w-full"
         type="submit"
       >
-        {loading ? "Loading..." : "Filter"}
+        {loading ? "Loading..." : "Get Grid Data"}
       </button>
     </form>
   );

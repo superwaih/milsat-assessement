@@ -11,14 +11,11 @@ const featureLayerURL =
 
 function LeafletMaps(){
   const {
-    geojsonFiles,
-    checkPolygon,
-    showGrid,
-    baseMap,
+    
     selectedStateForm,
     selectedLgaForm,
     setLoading,
-    setSelectedPolygon,
+    
   } = useDataProvider();
   const [gridData, setGridData] = useState([])
   const GET_DATA = (state, lga) => {
@@ -47,7 +44,7 @@ function LeafletMaps(){
    
     return (
         <>
-        {showGrid && (
+       
          <FeatureLayer
            url={featureLayerURL}
            ref={featureLayerRef}
@@ -90,7 +87,7 @@ function LeafletMaps(){
            
     
          />
-       )}
+       
         
         </>
     )

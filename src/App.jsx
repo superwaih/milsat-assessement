@@ -5,12 +5,11 @@ import Sidebar from "./components/Sidebar";
 import AssignTaskModal from "./components/AssignTaskModal";
 import { useDataProvider } from "./context/DataProvider";
 import ChangeBaseMap from "./components/Map-components/ChangeBaseMap";
-import MapBoxMapPage from "./components/Map-components/LeafletGeojson";
 
 
 
 export default function App() {
-const{assignTaskModal, selectedLgaForm, selectedStateForm} = useDataProvider()
+const{assignTaskModal} = useDataProvider()
 
   
   return (

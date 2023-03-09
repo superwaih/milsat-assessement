@@ -1,19 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
-import L from "leaflet";
-import { MapContainer, TileLayer, Popup, GeoJSON, Polygon} from "react-leaflet";
+import React, { useRef } from "react";
+import { MapContainer, TileLayer, Popup, GeoJSON,} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useDataProvider } from "../context/DataProvider";
-import axios from "axios";
 
 import ChangeZoomLevel from "./Map-components/ChangeZoomLevel";
-// ESRI API URL
-const featureLayerURL =
-  "https://services3.arcgis.com/od20s3ViWJZ68qsq/ArcGIS/rest/services/Nigeria_Grids/FeatureServer/0";
 
 const MapPage = () => {
  
   const {
-    geojsonFiles,
     checkPolygon,
     firstcords,
     gridFrame,
@@ -24,7 +18,6 @@ const MapPage = () => {
   } = useDataProvider();
   
   const mapRef = useRef(null);
-  const [dataId, setDataId] = useState()
   
   return (
     <div className="w-full h-full">
@@ -57,7 +50,6 @@ const MapPage = () => {
               eventHandlers={{
                 click: (e) => {
                   setSelectedPolygon(e.layer.feature.properties.FID);
-                  setDataId(index);
                 },
               }}
              
