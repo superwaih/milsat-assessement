@@ -76,44 +76,49 @@ const QueryTab = () => {
       }
     }
   };
+
+  console.log(workFrameType)
   return (
-    <form className="w-full" onSubmit={handleFilter}>
-      <div className="flex mb-3 gap-3 justify-between border border-blue-500 p-2 rounded-md">
-        <label className="font-semibold" htmlFor="workFrameType">
+    <form className="w-full flex gap-4" onSubmit={handleFilter}>
+      <div className="">
+        {/* <label className="font-semibold" htmlFor="workFrameType">
           Work Frame Type:
-        </label>
+        </label> */}
         <select
           id="workFrameType"
           value={workFrameType}
-          className="w-full border"
+          className="w-full border p-4"
           onChange={(event) => setWorkFrameType(event.target.value)}
           required
         >
-          <option value="">Frame type</option>
+          <option value="">Select Frame type</option>
           <option value="0">Frame 0</option>
           <option value="1">Frame 1</option>
         </select>
       </div>
-      <div className="flex flex-col">
+
+      <div className="flex gap-4">
         <select
           name="states"
           value={selectedStateCode}
-          className="w-full border font-bold p-4 mb-2"
+          className="w-full border font-bold p-4"
           onChange={(e) => handleStateChange(e)}
         >
           <option value="">Select your state</option>
-          {stateNames?.map((state) => (
+          {workFrameType != "" ? stateNames?.map((state) => (
             <option
               className=""
               key={state.attributes.STATE_CODE}
               value={state.attributes.STATE_CODE}
             >
-              {state.attributes.STATE_NAME}
+              {state.attributes.STATE_NAME} <span>
+              ({state.attributes.STATE_CODE})
+              </span>
             </option>
-          ))}
+          )) : <option className="" value="">select a work frame type first</option>}
         </select>
         <select
-          className="w-full border font-bold p-4 mb-2"
+          className="w-full border font-bold p-4 "
           value={selectedLGACode}
           onChange={(e) => setSelectedLGACode(e.target.value)}
           name="lga"
@@ -131,7 +136,7 @@ const QueryTab = () => {
                   key={lga.attributes.LGA_CODE}
                   value={lga.attributes.LGA_CODE}
                 >
-                  {lga.attributes.LGA_NAME}
+                  {lga.attributes.LGA_NAME} <span>({lga.attributes.LGA_CODE})</span>
                 </option>
               ))}
             </>
@@ -143,7 +148,7 @@ const QueryTab = () => {
       </div>
       <button
         disabled={loading}
-        className="bg-blue-500 p-3 disabled:opacity-40 text-white font-semibold rounded-md w-full"
+        className="bg-blue-500 disabled:opacity-40 text-white font-semibold rounded-md px-4 py-5"
         type="submit"
       >
         {loading ? "Loading..." : "Get Grid Data"}

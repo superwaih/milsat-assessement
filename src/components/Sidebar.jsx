@@ -2,41 +2,34 @@ import React, { useState } from "react";
 import { useDataProvider } from "../context/DataProvider";
 import QueryTab from "./sidebar-components/QueryTab";
 import TasksTab from "./sidebar-components/TasksTab";
+import UsersTab from "./sidebar-components/UsersTab";
 
 const Sidebar = () => {
   const {
     selectedPolygon,
   } = useDataProvider();
-  const[activeTab, setActiveTab] = useState("task")
+  const[activeTab, setActiveTab] = useState("frame")
   const changeActiveTab = (tabname) =>{
     setActiveTab(tabname)
   }
 
   return (
     <div
-      className="max-w-[600px] w-full  
+      className="max-w-[500px] w-full overflow-y-scroll 
       border-black h-full flex-col border-r-2 p-8 flex gap-4"
     >
      <div>
-     <div>
-      <h3 className="font-bold">Simple Guide for Managers </h3>
-      {/* <p className="italic">
-        This is a demo project where you can assign tasks and see tasks you
-        assigned There are six available field collectors and six available
-        tasks and each collector can only be assigned to the same task once
-        and can also be assigned to all the tasks
-      </p> */}
-    </div>
+   
     {selectedPolygon && (
       <h1 className="font-bold text-xl">Current Task: {selectedPolygon}</h1>
     )}
      <div className="border-gray-300 pt-3  flex gap-4 border-b">
-      <button onClick={() => changeActiveTab("task")} className={activeTab === "task" ? "text-xl border-b-2 border-gray-400  uppercase font-semibold" : "text-xl rounded-md uppercase"}>Query</button>
-      <button onClick={() => changeActiveTab("query")} className={activeTab === "query" ? "text-xl border-b-2 border-slate-400 uppercase font-semibold" : "text-xl rounded-md uppercase"}>Tasks</button>
+      <button onClick={() => changeActiveTab("frame")} className={activeTab === "frame" ? "text-xl border-b-2 border-gray-400  uppercase font-semibold" : "text-xl rounded-md uppercase"}>Frame</button>
+      <button onClick={() => changeActiveTab("users")} className={activeTab === "users" ? "text-xl border-b-2 border-slate-400 uppercase font-semibold" : "text-xl rounded-md uppercase"}>Users</button>
      </div>
      </div>
      <div className="flex w-full gap-4">
-      {activeTab === "task" ?  <QueryTab /> : <TasksTab  />}
+      {activeTab === "frame" ?  <TasksTab /> : <UsersTab  />}
       
  
        

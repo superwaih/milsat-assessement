@@ -4,6 +4,9 @@ import "leaflet/dist/leaflet.css";
 import { useDataProvider } from "../context/DataProvider";
 
 import ChangeZoomLevel from "./Map-components/ChangeZoomLevel";
+import ChangeBaseMap from "./Map-components/ChangeBaseMap";
+import Legend from "./Map-components/Legend";
+
 
 const MapPage = () => {
  
@@ -12,6 +15,7 @@ const MapPage = () => {
     firstcords,
     gridFrame,
     baseMap,
+    Users,
     selectedPolygon,
     setSelectedPolygon,
     
@@ -20,7 +24,7 @@ const MapPage = () => {
   const mapRef = useRef(null);
   
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full relative">
       <MapContainer
         ref={mapRef}
         center={[9.07481143758369, 7.493501807312384]}
@@ -76,7 +80,31 @@ const MapPage = () => {
                   <h3 className="text-xl font-semibold">
                     FID: {selectedPolygon}
                   </h3>
-                  <div className="text-[17px]"></div>
+
+                  <div className="text-[17px]">
+                  <div>
+              {geojsonFile?.assigned_users?.length > 0 ? 
+              (
+              geojsonFile?.assigned_users.map((user, index) => {
+                const userDetail = Users.filter((d) => d.id === user)
+                return(
+                  <div
+                  key={user}
+                  className="border-b p-3 flex justify-between pb-2 border-black "
+                >
+                  <h4 className="text-xl">{userDetail[0].fullname}</h4>
+
+                </div>
+                )
+              })
+            ) : (
+              <div className="py-4">
+                There are no users assigned to this  now!
+              </div>
+            )}
+            </div>
+          
+                  </div>
                 </div>
               </Popup>
             </GeoJSON>
@@ -84,6 +112,9 @@ const MapPage = () => {
         })}
         <ChangeZoomLevel firstcords={firstcords} />
       </MapContainer>
+      <ChangeBaseMap />
+    <Legend />
+
     </div>
   );
 };

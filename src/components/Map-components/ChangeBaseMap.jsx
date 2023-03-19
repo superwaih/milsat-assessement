@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDataProvider } from "../../context/DataProvider";
-
+import {BiMap} from "react-icons/bi"
+import {AiOutlineCloseCircle} from "react-icons/ai"
 const ChangeBaseMap = () => {
     const{mapType, setMapType, setBaseMap} = useDataProvider()
     const handleMapTypeChange = (event) => {
@@ -19,14 +20,23 @@ const ChangeBaseMap = () => {
     
  
   };
+  const[showBaseMapButton, setShowBaseMapButton] = useState(false)
 
 
 
   return (
     <div 
-    className='overlay py-3 top-[15%] flex-col space-y-3 right-[5%] flex border-emerald-300 fixed w-[200px] p-3 bg-white border-2 rounded-md'
+    
+    className='overlay absolute py-3 top-[10%] flex-col space-y-3 left-2 flex border-emerald-300 p-3 bg-white border-2 rounded-md'
     >
-        <h3 className="font-bold">Change Basemap</h3>
+      
+      {
+        showBaseMapButton ? (
+          <>
+           <div className="flex justify-between w-full items-center">
+           <h3 className="font-bold">Basemap</h3>
+           <AiOutlineCloseCircle className="text-xl text-red-500" onClick={() => setShowBaseMapButton(!showBaseMapButton)} />
+           </div>
       <div className="flex gap-4 items-center border-black border-b-2 pb-2">
         <label>Satellite</label>
 
@@ -50,6 +60,10 @@ const ChangeBaseMap = () => {
           onChange={handleMapTypeChange}
         />
       </div>
+          </>
+        )
+  :     <BiMap className="text-2xl cursor-pointer" onClick={() => setShowBaseMapButton(!showBaseMapButton)} />  }
+
     </div>
   );
 };
