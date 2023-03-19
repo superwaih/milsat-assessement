@@ -4,13 +4,11 @@ import { useDataProvider } from "../../context/DataProvider";
 const TasksTab = () => {
   const {
     assignTaskModal,
-    geojsonFiles,
     checkPolygon,
     setSelectedPolygon,
     handleRemoveUser,
     setAssignTaskModal,
     activateDropDown,
-    selectedPolygon,
     gridFrame,
     Users,
     setActivateDropDown,
@@ -20,6 +18,7 @@ const TasksTab = () => {
   
   return (
     <div className="flex flex-col p-2 space-y-4">
+      {/* showing only the first few frame data to reduce load since this is for demo purposes */}
       {gridFrame?.slice(0, 10).map((task) => (
         <div
           key={task?.properties.FID}

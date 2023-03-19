@@ -9,7 +9,6 @@ const AssignTaskModal = () => {
     selectedLGACode,
     selectedStateCode,
     currentpolygon,
-    manager,
     setAssignTaskModal,
   } = useDataProvider();
 
@@ -30,7 +29,7 @@ const AssignTaskModal = () => {
     };
   });
 
-  // checks that the selected user isn't already assigned the task and if not assigns the task to the user
+  // handles assigning of frames/task
   const HandleAssignTask = () => {
     if (selectValues.length != 0) {
       const currentTask = currentpolygon[0].assigned_users;
