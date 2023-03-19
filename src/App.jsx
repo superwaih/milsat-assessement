@@ -25,7 +25,6 @@ const{assignTaskModal} = useDataProvider()
     <Sidebar  />
     <MapPage  />
     </div>
-    {/* <ChangeBaseMap /> */}
 
     {assignTaskModal && (<AssignTaskModal />)}
     

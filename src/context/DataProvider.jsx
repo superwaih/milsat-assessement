@@ -14,7 +14,8 @@ const DataProvider = ({ children }) => {
   const [assignTaskModal, setAssignTaskModal] = useState(false);
  // boolean for show the list of assigned users to a task
   const [activateDropDown, setActivateDropDown] = useState(false);
-  // boolean for showing the filtered data on the map
+  // Selected User State
+  const[currentUser, setCurrentUser] = useState("")
 
   // User input states
   const [workFrameType, setWorkFrameType] = useState("");
@@ -71,6 +72,8 @@ const DataProvider = ({ children }) => {
         setLoading,
         loading,
         Users,
+        currentUser,
+        setCurrentUser,
         gridFrame, 
         setGridFrame,
         setMapType,

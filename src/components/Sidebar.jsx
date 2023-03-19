@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDataProvider } from "../context/DataProvider";
-import QueryTab from "./sidebar-components/QueryTab";
 import TasksTab from "./sidebar-components/TasksTab";
 import UsersTab from "./sidebar-components/UsersTab";
 
