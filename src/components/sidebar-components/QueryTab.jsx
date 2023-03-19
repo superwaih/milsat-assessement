@@ -77,17 +77,14 @@ const QueryTab = () => {
     }
   };
 
-  console.log(workFrameType)
   return (
     <form className="w-full flex gap-4" onSubmit={handleFilter}>
       <div className="">
-        {/* <label className="font-semibold" htmlFor="workFrameType">
-          Work Frame Type:
-        </label> */}
+       
         <select
           id="workFrameType"
           value={workFrameType}
-          className="w-full border p-4"
+          className="w-full border p-4 rounded-md"
           onChange={(event) => setWorkFrameType(event.target.value)}
           required
         >
@@ -101,7 +98,7 @@ const QueryTab = () => {
         <select
           name="states"
           value={selectedStateCode}
-          className="w-full border font-bold p-4"
+          className="w-full border font-bold p-3 rounded-md"
           onChange={(e) => handleStateChange(e)}
         >
           <option value="">Select your state</option>
@@ -118,7 +115,7 @@ const QueryTab = () => {
           )) : <option className="" value="">select a work frame type first</option>}
         </select>
         <select
-          className="w-full border font-bold p-4 "
+          className="w-full border font-bold p-3 rounded-md"
           value={selectedLGACode}
           onChange={(e) => setSelectedLGACode(e.target.value)}
           name="lga"
@@ -142,13 +139,11 @@ const QueryTab = () => {
             </>
           )}
         </select>
-        <div>
-          {/* lga:{selectedLGACode}, state:{selectedStateCode} */}
-        </div>
+       
       </div>
       <button
         disabled={loading}
-        className="bg-blue-500 disabled:opacity-40 text-white font-semibold rounded-md px-4 py-5"
+        className="bg-blue-500 disabled:opacity-40 text-white font-semibold rounded-md px-2 py-4"
         type="submit"
       >
         {loading ? "Loading..." : "Get Grid Data"}

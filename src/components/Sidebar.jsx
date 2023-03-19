@@ -14,7 +14,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className="max-w-[500px] w-full overflow-y-scroll 
+      className="max-w-[550px] w-full overflow-y-scroll 
       border-black h-full flex-col border-r-2 p-8 flex gap-4"
     >
      <div>
